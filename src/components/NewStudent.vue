@@ -5,7 +5,10 @@
         <el-input v-model="form2.sname"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="ssex">
-        <el-input v-model="form2.ssex"></el-input>
+        <el-radio-group v-model="form2.ssex">
+          <el-radio label="male">男</el-radio>
+          <el-radio label="female">女</el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item label="出生日期" prop="sage">
         <el-col :span="11">
@@ -45,11 +48,19 @@
             'Content-Type': 'application/json; charset=utf-8'
           }
         })
-                .then(function (response) {
-                  console.log(response.data.code);
-                    alert("数据添加成功");
-//                    this.$refs['form2'].resetFields();
-//                    this.resetForm("form2");
+                .then(res => {
+                  if (res.data.code==0){
+                    this.$message({
+                      type: "success",
+                      message: "新增成功！"
+                    });
+                    this.resetForm('form2');
+                  }else {
+                    this.$message({
+                      type: "error",
+                      message: res.data.msg
+                    });
+                  }
                 })
                 .catch(function (error) {
                   console.log(error);
