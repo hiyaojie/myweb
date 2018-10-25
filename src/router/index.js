@@ -6,6 +6,8 @@ import WorkFlow from '@/components/WorkFlow'
 import ShowStudents from '@/components/ShowStudents'
 import NewStudent from '@/components/NewStudent'
 import Char from '@/components/Char'
+import Learning from '@/components/Learning'
+import BarChart from '@/components/BarChart'
 
 
 Vue.use(Router)
@@ -14,8 +16,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'BarChart',
+      component: BarChart
     },
     {
       path: '/newcontact',
@@ -41,6 +43,11 @@ export default new Router({
       path: '/char',
       name: 'Char',
       component: Char
+    },
+    {
+      path: '/learning',
+      name: 'Learning',
+      component: Learning
     },
 
   ]

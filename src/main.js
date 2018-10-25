@@ -18,6 +18,7 @@ Vue.prototype.$http = axios //修改Vue的原型属性
 const message = Message
 Vue.prototype.$message = message
 
+
 axios.interceptors.request.use(function (config) {
   config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   if(config.method === 'post') { // post请求时，处理数据

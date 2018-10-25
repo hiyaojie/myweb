@@ -83,7 +83,7 @@
 //            text: '数据来源: WorldClimate.com'
 //          },
           xAxis: {
-            categories: [],
+            categories: ['少年','青年','中年','老年'],
             crosshair: true
           },
           yAxis: {
@@ -108,7 +108,7 @@
           },
           series: [{
             name: '人数',
-            data: []
+            data: [5,6,5,4]
           }],
           credits: {
             enabled: false

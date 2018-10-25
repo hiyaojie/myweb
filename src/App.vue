@@ -11,19 +11,19 @@
             <el-menu-item-group>
               <template slot="title">分组一</template>
               <el-menu-item index="1-1">首页</el-menu-item>
-              <el-menu-item index="1-2">步骤</el-menu-item>
+              <el-menu-item index="1-2">每日学习</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">查看学生信息</el-menu-item>
               <el-menu-item index="1-4">录入学生信息</el-menu-item>
+              <el-menu-item index="1-3">查看学生信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-menu"></i>数据报表</template>
             <el-menu-item-group>
               <template slot="title">分组一</template>
-              <el-menu-item index="2-1">折线图</el-menu-item>
-              <el-menu-item index="2-2">选项2</el-menu-item>
+              <el-menu-item index="2-1">报表1</el-menu-item>
+              <el-menu-item index="2-2">报表2</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
               <el-menu-item index="2-3">选项3</el-menu-item>
@@ -52,8 +52,9 @@
       </el-aside>
 
       <el-container>
+        <!--TodoList:实现动态路由-->
         <el-header style="text-align: right; font-size: 12px">
-          <el-breadcrumb separator-class="el-icon-arrow-right">
+          <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-top: 20px">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>活动管理</el-breadcrumb-item>
             <el-breadcrumb-item>活动列表</el-breadcrumb-item>
@@ -101,7 +102,7 @@ export default {
           this.$router.push('/');
           break;
         case '1-2':
-          this.$router.push('/workflow');
+          this.$router.push('/learning');
           break;
         case '1-3':
           this.$router.push('/showStudents');
@@ -111,6 +112,9 @@ export default {
           break;
         case '2-1':
           this.$router.push('/char');
+          break;
+        case '2-2':
+          this.$router.push('/');
           break;
       }
     },
