@@ -8,9 +8,11 @@ import axios from 'axios' //引入axios
 import qs from 'qs'
 import  { Message }  from 'element-ui';
 import App from './App'
+import HighchartsVue from 'highcharts-vue'
 
 
 Vue.use(ElementUI)
+Vue.use(HighchartsVue)
 Vue.config.productionTip = false
 Vue.prototype.$http = axios //修改Vue的原型属性
 const message = Message

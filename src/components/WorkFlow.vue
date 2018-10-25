@@ -127,10 +127,20 @@
 
   mounted() {
     this.$http.get("http://localhost:9027/api/user/selectAll")
-            .then(response => (this.tabledata = response.data.data));
+            .then(response => {
+              this.tabledata = response.data.data;
+              var mycars = new Array()
+              for (let index in response.data.data){
+                mycars[index] = response.data.data[index]['sage'];
+              }
+              console.log(mycars);
+            });
 
     this.$http.get("http://localhost:9027/api/ecdict/showWords?num=3")
-            .then(response => (this.words = response.data.data));
+            .then(response =>
+            {
+              this.words = response.data.data;
+            });
   },
   methods: {
     next() {

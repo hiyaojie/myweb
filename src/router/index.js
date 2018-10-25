@@ -5,6 +5,7 @@ import NewContact from '@/components/NewContact'
 import WorkFlow from '@/components/WorkFlow'
 import ShowStudents from '@/components/ShowStudents'
 import NewStudent from '@/components/NewStudent'
+import Char from '@/components/Char'
 
 
 Vue.use(Router)
@@ -35,6 +36,11 @@ export default new Router({
       path: '/showStudents',
       name: 'ShowStudents',
       component: ShowStudents
+    },
+    {
+      path: '/char',
+      name: 'Char',
+      component: Char
     },
 
   ]
