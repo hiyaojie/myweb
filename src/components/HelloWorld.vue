@@ -1,6 +1,9 @@
 <template>
   <!-- 这里router-link to="newcontact"会把路由导航到http://localhost:8080/#/newcontact   -->
-  <router-link to="workflow"><h1>{{ msg }}</h1></router-link>
+
+  <!--<router-link to="workflow"><h1>{{ msg }}</h1></router-link>-->
+  <!--<router-link :to="editStudent"><el-button type="text" size="small">编辑</el-button></router-link>-->
+  <!--<router-link :to="{name:'/editStudent',params:{id: scope.row.id}}"><el-button type="text" size="small">编辑</el-button></router-link>-->
 </template>
 
 <script>

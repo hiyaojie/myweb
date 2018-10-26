@@ -8,6 +8,7 @@ import NewStudent from '@/components/NewStudent'
 import Char from '@/components/Char'
 import Learning from '@/components/Learning'
 import BarChart from '@/components/BarChart'
+import EditStudent from '@/components/EditStudent'
 
 
 Vue.use(Router)
@@ -26,7 +27,7 @@ export default new Router({
     },
     {
       path: '/newstudent',
-      name: 'NewStudent',
+      name: '录入信息',
       component: NewStudent
     },
     {
@@ -36,17 +37,28 @@ export default new Router({
     },
     {
       path: '/showStudents',
-      name: 'ShowStudents',
+      name: '查看学生信息',
       component: ShowStudents
     },
     {
-      path: '/char',
-      name: 'Char',
+      path: '/editStudent/:id',
+      name: 'editStudent',
+      alia: '编辑学生信息',
+      component: EditStudent
+    },
+    {
+      path: '/chart',
+      name: '报表1',
       component: Char
     },
     {
+      path: '/barchart',
+      name: '报表2',
+      component: BarChart
+    },
+    {
       path: '/learning',
-      name: 'Learning',
+      name: '每日学习',
       component: Learning
     },
 

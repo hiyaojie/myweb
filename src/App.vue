@@ -56,9 +56,10 @@
         <el-header style="text-align: right; font-size: 12px">
           <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-top: 20px">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+            <!--<el-breadcrumb-item>活动管理</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>活动列表</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
+            <el-breadcrumb-item :to="{ path: this.$route.path}">{{this.$route.name}}</el-breadcrumb-item>
           </el-breadcrumb>
           <!--<el-dropdown>-->
             <!--<i class="el-icon-setting" style="margin-right: 15px"></i>-->
@@ -111,10 +112,10 @@ export default {
           this.$router.push('/newstudent');
           break;
         case '2-1':
-          this.$router.push('/char');
+          this.$router.push('/chart');
           break;
         case '2-2':
-          this.$router.push('/');
+          this.$router.push('/barchart');
           break;
       }
     },

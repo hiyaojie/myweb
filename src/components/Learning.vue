@@ -11,12 +11,15 @@
     </el-steps>
     <div v-show="active==1" class="content">
       <el-row>
-        <el-col :span="5" v-for="(o, index) in words" :key="o" :offset="index > 0 ? 3 : 0">
-          <el-card :body-style="{ padding: '10px' }">
+        <el-col :span="5" v-for="(o, index) in words" :key="index" :offset="index > 0 ? 3 : 0">
+          <el-card :body-style="{ padding: '10px' }" style="height: 200px">
             <!--<img src="../assets/logo.png" class="image">-->
             <div style="padding: 10px;">
-              <span>{{o.char}}</span>
-              <p v-for="e in o.explian">{{e}}</p>
+              <b>{{ o.word }}</b>
+              <p>{{ o.definition}}</p>
+              <p>{{ o.translation }}</p>
+              <!--<span>{{o.char}}</span>-->
+              <!--<p v-for="e in o.explian">{{e}}</p>-->
               <!--<p>vt. 原谅;为…申辩;免除，宽免;给…免去</p>-->
               <div class="bottom clearfix">
                 <time class="time">{{ currentDate }}</time>
@@ -57,25 +60,33 @@
               {num:5,word:'I am fine',desc:'看5页编程书籍'},
 
             ],
-            words: [
-              {char:'excuse',
-                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
-                'n 辩解;借口，托辞;道歉，歉意;请假条',
-                  'vi 作为借口;请示宽恕;表示宽恕'
-                ]},
-              {char:'excuse',
-                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
-                'n 辩解;借口，托辞;道歉，歉意;请假条',
-                  'vi 作为借口;请示宽恕;表示宽恕'
-                ]},
-              {char:'excuse',
-                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
-                'n 辩解;借口，托辞;道歉，歉意;请假条',
-                  'vi 作为借口;请示宽恕;表示宽恕'
-                ]}],
+            words: [],
+//            words: [
+//              {char:'excuse',
+//                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
+//                'n 辩解;借口，托辞;道歉，歉意;请假条',
+//                  'vi 作为借口;请示宽恕;表示宽恕'
+//                ]},
+//              {char:'excuse',
+//                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
+//                'n 辩解;借口，托辞;道歉，歉意;请假条',
+//                  'vi 作为借口;请示宽恕;表示宽恕'
+//                ]},
+//              {char:'excuse',
+//                explian:['vt 原谅;为…申辩;免除，宽免;给…免去',
+//                'n 辩解;借口，托辞;道歉，歉意;请假条',
+//                  'vi 作为借口;请示宽恕;表示宽恕'
+//                ]}],
             currentDate: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
           }
         },
+      mounted() {
+        this.$http.get("http://localhost:9027/api/ecdict/showWords?num=3")
+                .then(response =>
+                {
+                  this.words = response.data.data;
+                });
+      },
         methods: {
           next() {
             if (this.active++ > this.steps.length-1) this.active = 1;
