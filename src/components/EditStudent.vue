@@ -16,7 +16,7 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="insertStudent">确认更新</el-button>
+        <el-button type="primary" @click="insertStudent" :disabled="disabled">确认更新</el-button>
         <el-button @click="resetForm('form2')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -34,7 +34,7 @@
           ssex:'',
           sage:''
         },
-        code: '',
+        disabled: false,
 
       }
     },
@@ -42,7 +42,6 @@
       this.$http.get("http://localhost:9027/api/user/selectStudentById",{params:{id: this.$route.params.id}})
               .then(response => {
                 this.form2 = response.data.data;
-                console.log(this.form2)
               })
     },
     methods: {//添加在data(){...},的后面
@@ -51,6 +50,7 @@
       },
       insertStudent() {
 //      var formData2 = JSON.stringify(this.form2);
+        this.disabled = true;
         this.$http.post("http://localhost:9027/api/user/update",this.form2,{
           'headers':{
             'Content-Type': 'application/json; charset=utf-8'
@@ -62,6 +62,7 @@
                       type: "success",
                       message: "修改成功！"
                     });
+                    this.$router.push('/showStudents');
 //                    this.resetForm('form2');
                   }else {
                     this.$message({

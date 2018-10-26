@@ -16,7 +16,7 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="insertStudent">立即创建</el-button>
+        <el-button type="primary" disabled:="disabled" @click="insertStudent">立即创建</el-button>
         <el-button @click="resetForm('form2')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -33,7 +33,7 @@
           ssex:'',
           sage:''
         },
-        code: '',
+        disabled: false,
 
       }
     },
@@ -43,6 +43,7 @@
       },
       insertStudent() {
 //      var formData2 = JSON.stringify(this.form2);
+        this.disabled = true;
         this.$http.post("http://localhost:9027/api/user/insert",this.form2,{
           'headers':{
             'Content-Type': 'application/json; charset=utf-8'
@@ -61,6 +62,7 @@
                       message: res.data.msg
                     });
                   }
+                  this.disabled = false;
                 })
                 .catch(function (error) {
                   console.log(error);
