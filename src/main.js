@@ -9,6 +9,8 @@ import qs from 'qs'
 import  { Message }  from 'element-ui';
 import App from './App'
 import HighchartsVue from 'highcharts-vue'
+import { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlus, CodeToText, TextToCode } from 'element-china-area-data'
+
 
 
 Vue.use(ElementUI)

@@ -9,6 +9,10 @@ import Char from '@/components/Char'
 import Learning from '@/components/Learning'
 import BarChart from '@/components/BarChart'
 import EditStudent from '@/components/EditStudent'
+import ShowLinuxStudy from '@/components/ShowLinuxStudy'
+import NewCustomer from '@/components/NewCustomer'
+import ShowCustomer from '@/components/ShowCustomer'
+import EditCustomer from '@/components/EditCustomer'
 
 
 Vue.use(Router)
@@ -60,6 +64,26 @@ export default new Router({
       path: '/learning',
       name: '每日学习',
       component: Learning
+    },
+    {
+      path: '/linux',
+      name: 'Linux指令学习',
+      component: ShowLinuxStudy
+    },
+    {
+      path: '/customer/new',
+      name: '新增客户信息',
+      component: NewCustomer
+    },
+    {
+      path: '/customer/list',
+      name: '查看客户信息',
+      component: ShowCustomer
+    },
+    {
+      path: '/customer/update/:id',
+      name: '修改客户信息',
+      component: EditCustomer
     },
 
   ]

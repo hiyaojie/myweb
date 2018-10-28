@@ -12,11 +12,11 @@
       </el-form-item>
       <el-form-item label="出生日期" prop="sage">
         <el-col :span="11">
-          <el-date-picker type="date" placeholder="出生日期" v-model="form2.sage" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" value-format="yyyy-MM-dd" placeholder="出生日期" v-model="form2.sage" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" disabled:="disabled" @click="insertStudent">立即创建</el-button>
+        <el-button type="primary" v-bind:disabled="bt" @click="insertStudent">立即创建</el-button>
         <el-button @click="resetForm('form2')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -33,7 +33,7 @@
           ssex:'',
           sage:''
         },
-        disabled: false,
+        bt: false,
 
       }
     },
@@ -43,6 +43,7 @@
       },
       insertStudent() {
 //      var formData2 = JSON.stringify(this.form2);
+//         console.log(this.form2);
         this.disabled = true;
         this.$http.post("http://localhost:9027/api/user/insert",this.form2,{
           'headers':{

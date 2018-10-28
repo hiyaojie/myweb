@@ -8,7 +8,7 @@
       <el-table-column prop="ssex" label="性别"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="open(scope.row)" type="text" size="small">删除</el-button>
+          <el-button @click="open(scope.row)" type="text" size="medium">删除</el-button>
           <router-link :to="{name:'editStudent',params:{id: scope.row.id}}"><el-button type="text" size="small">编辑</el-button></router-link>
           <!--<el-button type="text" size="small">编辑</el-button>-->
         </template>

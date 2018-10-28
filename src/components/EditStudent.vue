@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item label="出生日期" prop="sage">
         <el-col :span="11">
-          <el-date-picker type="date" placeholder="出生日期" v-model="form2.sage" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" value-format="yyyy-MM-dd" placeholder="出生日期" v-model="form2.sage" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item>

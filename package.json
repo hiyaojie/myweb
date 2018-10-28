@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-china-area-data": "^4.1.1",
     "element-ui": "^2.4.8",
     "highcharts": "^6.2.0",
     "highcharts-vue": "^1.2.0",

@@ -30,7 +30,26 @@
         </el-col>
       </el-row>
     </div>
-    <div v-show="active==2">danci2</div>
+    <div v-show="active==2">
+      <el-row>
+        <el-col :span="5" v-for="(o, index) in linuxCommands" :key="index" :offset="index > 0 ? 3 : 0">
+          <el-card :body-style="{ padding: '10px' }" style="height: 200px">
+            <!--<img src="../assets/logo.png" class="image">-->
+            <div style="padding: 10px;">
+              <b>{{ o.command }}</b>
+              <a v-bind:href="o.link" target="_blank">{{ o.link}}</a>
+              <p>{{ o.cate }}</p>
+              <p>学习状态：{{o.isStudied =='1'?'已学习':'暂未完成'}}</p>
+
+              <div class="bottom clearfix">
+                <time class="time">{{ currentDate }}</time>
+                <el-button type="text" class="button" @click="open(o.id)">完成学习</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
     <div v-show="active==3">danci3</div>
     <div v-show="active==4">danci3</div>
     <div v-show="active==5">danci3</div>
@@ -60,6 +79,7 @@
               {num:5,word:'I am fine',desc:'看5页编程书籍'},
 
             ],
+            linuxCommands: [],
             words: [],
 //            words: [
 //              {char:'excuse',
@@ -86,6 +106,12 @@
                 {
                   this.words = response.data.data;
                 });
+
+        this.$http.get("http://localhost:9027/api/linux/get3commands")
+                .then(response =>
+                {
+                  this.linuxCommands = response.data.data;
+                });
       },
         methods: {
           next() {
@@ -94,7 +120,44 @@
           },
           pre() {
             if (this.active-- < 2) this.active = 1;
-          }
+          },
+    open: function (id) {
+      this.$confirm('确认学习完成?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.handleClick(id);
+      }).catch(() => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消删除'
+                });}
+        )},
+    handleClick(id) {
+      this.$http.get("http://localhost:9027/api/linux/update",{params: {id: id,type: "studied"}}).
+      then(res => {
+        if (res.data.code==0){
+          this.$message({
+            type: "success",
+            message: "确认学习成功！"
+
+          });
+          this.$http.get("http://localhost:9027/api/linux/get3commands")
+                .then(response =>
+                {
+                  this.linuxCommands = response.data.data;
+                });
+          // this.handleCurrentChange(this.currentPage);
+        }else {
+          this.$message({
+            type: "error",
+            message: res.data.msg
+          });
+        }
+      });
+
+    },
         }
 
     }
