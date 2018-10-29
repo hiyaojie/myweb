@@ -1,5 +1,9 @@
 <template>
   <div class="showCustomer">
+    <div class="listByname">
+      <el-input v-model="inputName" placeholder="请输入姓名" class="input"></el-input>
+      <el-button type="primary" @click="lookup" class="button">查询</el-button>
+    </div>
     <el-table :data="tabledata" >
       <!--<el-table :data="tabledata.slice((currentPage-1)*pagesize,currentPage*pagesize)" align="left">-->
       <!--<el-table-column prop="id" label="序号" width="80" align="right"></el-table-column>-->
@@ -71,6 +75,7 @@ export default {
       total:null,
       currentPage:1,
       pagesize:10,
+      inputName: '',
     }
   },
   mounted() {
@@ -165,6 +170,22 @@ export default {
       return CodeToText[row.city];
     },
 
+    lookup: function () {
+      this.$http.get("http://localhost:9027/api/customer/listByName",{params: {name: this.inputName,size: 10, page: 1}})
+              .then(response => {
+                this.tabledata = response.data.data.data;
+                // for (var i=0;i<this.tabledata.length;i++){
+                //   if (this.tabledata[i].isStudied==null){
+                //     this.tabledata[i].isStudied='暂未学习';
+                //   }
+                //   else {
+                //     this.tabledata[i].isStudied='已学习';
+                //   }
+                // }
+                this.total = response.data.data.count;
+              })
+    }
+
     // tableRowClassName: function(row) {
     //     if (row.row.isStudied == '暂未学习') {
     //       return 'warning-row';
@@ -203,6 +224,19 @@ export default {
     margin-right: 0;
     margin-bottom: 0;
     width: 100%;
+  }
+  .listByname {
+    float: left;
+    width: 350px;
+  }
+  .input {
+    float: left;
+    width: 200px;
+  }
+  .button {
+    margin-left: 10px;
+    width: 90px;
+
   }
 
 </style>
