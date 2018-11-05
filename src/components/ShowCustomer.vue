@@ -1,7 +1,7 @@
 <template>
   <div class="showCustomer">
     <div class="listByname">
-      <el-input v-model="inputName" placeholder="请输入姓名" class="input"></el-input>
+      <el-input v-model="inputName" placeholder="请输入姓名" class="input" clearable="true"></el-input>
       <el-button type="primary" @click="lookup" class="button">查询</el-button>
     </div>
     <el-table :data="tabledata" >
@@ -38,7 +38,7 @@
       <el-table-column prop="name" label="姓名" width="100"></el-table-column>
       <el-table-column prop="gender" label="性别" :formatter="formatRole" width="100"></el-table-column>
       <el-table-column prop="phone" label="电话号码"></el-table-column>
-      <el-table-column prop="source" label="来源" :formatter="formatSource"></el-table-column>
+      <el-table-column prop="source" label="来源" :formatter="formatSource" width="100"></el-table-column>
       <el-table-column prop="province" label="省份" :formatter="formatProvince"></el-table-column>
       <el-table-column prop="city" label="城市" :formatter="formatCity"></el-table-column>
       <!--<el-table-column prop="address" label="地址"></el-table-column>-->
@@ -79,7 +79,7 @@ export default {
     }
   },
   mounted() {
-    this.$http.get("http://localhost:9027/api/customer/list?page=1&size=10")
+    this.$http.get("http://localhost:9027/api/customer/listByName",{params: {page: 1,size: 10,name: this.inputName}})
             .then(response => {
               this.tabledata = response.data.data.data;
               // for (var i=0;i<this.tabledata.length;i++){
@@ -99,7 +99,7 @@ export default {
     },
     handleCurrentChange: function(currentPage){
       this.currentPage = currentPage;
-      this.$http.get("http://localhost:9027/api/customer/list",{params: {page: currentPage,size: 10}}).
+      this.$http.get("http://localhost:9027/api/customer/listByName",{params: {page: currentPage,size: 10,name: this.inputName}}).
               then(res => {
                 this.tabledata = res.data.data.data;
                 this.total = res.data.data.count;

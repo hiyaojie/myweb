@@ -12,7 +12,7 @@
     <div v-show="active==1" class="content">
       <el-row>
         <el-col :span="5" v-for="(o, index) in words" :key="index" :offset="index > 0 ? 3 : 0">
-          <el-card :body-style="{ padding: '10px' }" style="height: 200px">
+          <el-card :body-style="{ padding: '10px' }" style="height: 300px">
             <!--<img src="../assets/logo.png" class="image">-->
             <div style="padding: 10px;">
               <b>{{ o.word }}</b>

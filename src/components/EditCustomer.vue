@@ -90,7 +90,7 @@
         title: false
       }
     },
-    mounted() {
+    created() {
       this.$http.get("http://localhost:9027/api/customer/selectById",{params:{id: this.$route.params.id}})
               .then(response => {
                 this.form2 = response.data.data;
